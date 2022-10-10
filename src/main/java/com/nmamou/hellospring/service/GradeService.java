@@ -3,12 +3,12 @@ package com.nmamou.hellospring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.nmamou.hellospring.Grade;
 import com.nmamou.hellospring.repository.GradeRepository;
 
-@Component
+@Service
 public class GradeService {
   @Autowired
   GradeRepository gradeRepository;
