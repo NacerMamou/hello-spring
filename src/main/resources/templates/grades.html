@@ -1,0 +1,183 @@
+<!DOCTYPE>
+<html>
+  <head> 
+    <title>Grades</title>
+    <style>
+      .container {
+        position: absolute;
+        left: 50%;
+        top: 45%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        background-color: #263238;
+        text-align: center;
+      }      
+      .update
+      {
+         display: inline-block;
+         width: 100%;      
+         height: 100%;
+         margin-bottom: 0.5em;
+         padding-top: .6em;
+         padding-bottom: .6em;
+         text-align: center;
+         font-size: 16px;
+         text-decoration: none;
+         color: #fff;
+         background-color: #04AA6D;
+         border-radius: 5px;
+         border: solid white 2px;
+      }
+      
+      .update:hover {
+        background-color: orange; 
+        cursor: pointer;
+      }
+      
+      
+      #table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border-width: 4px;
+        border-color: white;
+        border-style: solid;
+        font-size: 18px;
+      
+      }
+      
+      #table td, #table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      
+      #table tr:nth-child(even){background-color: white;}
+      #table tr:nth-child(odd){background-color: #EDF7FF;}
+      
+      #table tr:hover {background-color: #ddd;}
+      
+      #table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #263238;
+        color: white;
+        font-size: 20px;
+      }
+      
+      h2 {
+        color: white;
+        font-size: 60px;
+        font-weight: 600;    
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .topnav {
+        overflow: hidden;
+        background-color: #333;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      body {
+        background: #263238;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="topnav">
+      <a th:href="@{/}" >Form</a>
+      <a th:href="@{/grades}">Grades</a>
+    </div>
+
+    <div class= "container">
+      <h2 > Grades </h2>
+      <table id="table"> 
+        <tr>
+          <th>Student</th>
+          <th>Subject</th>
+          <th>Score</th>
+        </tr>
+        <!-- 
+        <tr>
+          <th th:text="${grade.name}"></th>
+          <th th:text="${grade.subject}">Potions</th>
+          <th th:text="${grade.score}"></th>
+        </tr>
+        
+        <tr th:object="${grade}">
+          <th th:text="*{name}"></th>
+          <th th:text="*{subject}">Potions</th>
+          <th th:text="*{score}"></th>
+        </tr>
+
+        <tr th:object="${grade1}">
+          <th th:text="*{name}"></th>
+          <th th:text="*{subject}">Potions</th>
+          <th th:text="*{score}"></th>
+        </tr>
+
+        <tr th:object="${grade2}">
+          <th th:text="*{name}"></th>
+          <th th:text="*{subject}">Potions</th>
+          <th th:text="*{score}"></th>
+        </tr>
+
+        <tr th:object="${grade3}">
+          <th th:text="*{name}"></th>
+          <th th:text="*{subject}">Potions</th>
+          <th th:text="*{score}"></th>
+        </tr>
+
+        <tr th:object="${grade4}">
+          <th th:text="*{name}"></th>
+          <th th:text="*{subject}">Potions</th>
+          <th th:text="*{score}"></th>
+        </tr>
+
+        <div th:switch="${product}">
+          <p th:case="'chair'">50</p>
+          <p th:case="'tv'">100</p>
+          <p th:case="*">No match</p>
+        </div>
+
+        <h1>Testing conditionals</h1>
+        <p th:if="${ sales > 100 }">Sales are good</p>
+        <p th:unless="${ sales > 100 }">Sales are bad</p>
+        <p th:text="${sales > 50} ? 'Sales were good' : 'Sales were bad' "> </p>
+        -->
+        <!-- LOOP TESTING -->
+        <tr th:each="elt : ${grades}">
+          <td th:text="${elt.name}"></td>
+          <td th:text="${elt.subject}"></td>
+          <td th:text="${elt.score}"></td>
+          <!--<td th:text="${elt.id}"></td>-->
+          
+          <!-- <td><a role="button" class="update" th:href="@{/}">Update</a></td> -->
+          <!--Pass parametres in url-->
+          <td><a role="button" class="update" th:href="@{/(id=${elt.id})}">Update</a></td>
+        </tr>
+
+        
+      </table>
+    </div>
+    
+  </body>
+</html>
