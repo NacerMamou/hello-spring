@@ -3,8 +3,11 @@ package com.nmamou.hellospring.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.nmamou.hellospring.Grade;
 
+@Component
 public class GradeRepository {
   private List <Grade> studentGrades = new ArrayList<>(); 
 

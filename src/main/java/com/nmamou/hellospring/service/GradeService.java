@@ -2,11 +2,16 @@ package com.nmamou.hellospring.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.nmamou.hellospring.Grade;
 import com.nmamou.hellospring.repository.GradeRepository;
 
+@Component
 public class GradeService {
-  GradeRepository gradeRepository = new GradeRepository();
+  @Autowired
+  GradeRepository gradeRepository;
   public Grade getGrade(int index){
     return gradeRepository.getGrade(index);
   }

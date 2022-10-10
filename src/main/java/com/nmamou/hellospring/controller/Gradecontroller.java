@@ -1,5 +1,6 @@
 package com.nmamou.hellospring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,10 @@ import com.nmamou.hellospring.service.GradeService;
 
 @Controller
 public class Gradecontroller {
-  GradeService gradeService = new GradeService();
+  
+  // This added to eliminate tight Coupling
+  @Autowired
+  GradeService gradeService;
     
 
   @GetMapping("/grades")
