@@ -12,7 +12,7 @@
         background-color: #263238;
         text-align: center;
       }      
-      .update
+      .update, .delete
       {
          display: inline-block;
          width: 100%;      
@@ -28,10 +28,15 @@
          border-radius: 5px;
          border: solid white 2px;
       }
-      
       .update:hover {
-        background-color: orange; 
+        background-color: blue; 
         cursor: pointer;
+      }
+      .delete{
+        background-color: orange; 
+      }
+      .delete:hover{
+        background-color: red; 
       }
       
       
@@ -115,64 +120,15 @@
           <th>Subject</th>
           <th>Score</th>
         </tr>
-        <!-- 
-        <tr>
-          <th th:text="${grade.name}"></th>
-          <th th:text="${grade.subject}">Potions</th>
-          <th th:text="${grade.score}"></th>
-        </tr>
-        
-        <tr th:object="${grade}">
-          <th th:text="*{name}"></th>
-          <th th:text="*{subject}">Potions</th>
-          <th th:text="*{score}"></th>
-        </tr>
-
-        <tr th:object="${grade1}">
-          <th th:text="*{name}"></th>
-          <th th:text="*{subject}">Potions</th>
-          <th th:text="*{score}"></th>
-        </tr>
-
-        <tr th:object="${grade2}">
-          <th th:text="*{name}"></th>
-          <th th:text="*{subject}">Potions</th>
-          <th th:text="*{score}"></th>
-        </tr>
-
-        <tr th:object="${grade3}">
-          <th th:text="*{name}"></th>
-          <th th:text="*{subject}">Potions</th>
-          <th th:text="*{score}"></th>
-        </tr>
-
-        <tr th:object="${grade4}">
-          <th th:text="*{name}"></th>
-          <th th:text="*{subject}">Potions</th>
-          <th th:text="*{score}"></th>
-        </tr>
-
-        <div th:switch="${product}">
-          <p th:case="'chair'">50</p>
-          <p th:case="'tv'">100</p>
-          <p th:case="*">No match</p>
-        </div>
-
-        <h1>Testing conditionals</h1>
-        <p th:if="${ sales > 100 }">Sales are good</p>
-        <p th:unless="${ sales > 100 }">Sales are bad</p>
-        <p th:text="${sales > 50} ? 'Sales were good' : 'Sales were bad' "> </p>
-        -->
         <!-- LOOP TESTING -->
         <tr th:each="elt : ${grades}">
           <td th:text="${elt.name}"></td>
           <td th:text="${elt.subject}"></td>
           <td th:text="${elt.score}"></td>
           <!--<td th:text="${elt.id}"></td>-->
-          
-          <!-- <td><a role="button" class="update" th:href="@{/}">Update</a></td> -->
           <!--Pass parametres in url-->
           <td><a role="button" class="update" th:href="@{/(id=${elt.id})}">Update</a></td>
+          <td><a role="button" class="delete" th:href="@{/delete/(id=${elt.id})}">Delete</a></td>
         </tr>
 
         

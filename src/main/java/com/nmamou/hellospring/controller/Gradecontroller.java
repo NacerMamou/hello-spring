@@ -7,44 +7,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nmamou.hellospring.Grade;
-import com.nmamou.hellospring.repository.GradeRepository;
+import com.nmamou.hellospring.service.GradeService;
 
 @Controller
 public class Gradecontroller {
-  GradeRepository gradeRepository = new GradeRepository();
+  GradeService gradeService = new GradeService();
     
- 
 
   @GetMapping("/grades")
   public String getGrades(Model model){
-    model.addAttribute("grades", gradeRepository.getAllGrades());
+    model.addAttribute("grades", gradeService.getAllGrades());
     return "grades";
   }
 
   @GetMapping("/")
   public String getForm(Model model, @RequestParam(required=false) String id){
-    Integer index = getIndex(id);
-    model.addAttribute("grade", index == -1000 ? new Grade() : gradeRepository.getGrade(index));
+    model.addAttribute("grade", gradeService.getGradeById(id));
     return "form";
   }
 
-  public Integer getIndex(String id){
-    for(int i=0; i < gradeRepository.getAllGrades().size(); i++){
-      if( gradeRepository.getGrade(i).getId().equals(id))
-        return i;
-    }
-    return -1000;
+  @GetMapping("/delete")
+  public String getDelete(Model model, @RequestParam(required=false) String id){
+    gradeService.removeGrade(gradeService.getGradeIndex(id));
+    model.addAttribute("grades", gradeService.getAllGrades());
+    return "redirect:/grades";
   }
 
   @PostMapping("/handleSubmit")
   public String submitGrade(Grade grade, Model model){
-    int index = getIndex(grade.getId());
+    int index = gradeService.getGradeIndex(grade.getId());
+   
     if(index == -1000){
-      gradeRepository.addGrade(grade);
+      gradeService.addGrade(grade);
     }else{
-      gradeRepository.updateGrade(grade, index);
+      gradeService.updateGrade(grade, index);
     }  
-    model.addAttribute("grades", gradeRepository.getAllGrades());
+    model.addAttribute("grades", gradeService.getAllGrades());
     return "redirect:/grades";
   }
 }

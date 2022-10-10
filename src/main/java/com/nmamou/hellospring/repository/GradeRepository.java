@@ -23,4 +23,8 @@ public class GradeRepository {
   public List<Grade> getAllGrades(){
     return studentGrades;
   }
+
+  public void removeGrade(int index){
+    studentGrades.remove(index);
+  }
 }
