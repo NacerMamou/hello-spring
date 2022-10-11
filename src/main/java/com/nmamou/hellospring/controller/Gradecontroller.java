@@ -11,8 +11,8 @@ import com.nmamou.hellospring.Grade;
 import com.nmamou.hellospring.service.GradeService;
 
 @Controller
-public class Gradecontroller {
-  
+public class GradeController {
+
   // This added to eliminate tight Coupling
   @Autowired
   GradeService gradeService;
@@ -33,12 +33,14 @@ public class Gradecontroller {
   @GetMapping("/delete")
   public String getDelete(Model model, @RequestParam(required=false) String id){
     gradeService.removeGrade(gradeService.getGradeIndex(id));
-    model.addAttribute("grades", gradeService.getAllGrades());
+    // You do not need to give the model attribute in here because a rederiction will be performed
+    // The redirection will give the model attribute
+    // model.addAttribute("grades", gradeService.getAllGrades());
     return "redirect:/grades";
   }
 
   @PostMapping("/handleSubmit")
-  public String submitGrade(Grade grade, Model model){
+  public String submitGrade(Grade grade){
     int index = gradeService.getGradeIndex(grade.getId());
    
     if(index == -1000){
@@ -46,7 +48,9 @@ public class Gradecontroller {
     }else{
       gradeService.updateGrade(grade, index);
     }  
-    model.addAttribute("grades", gradeService.getAllGrades());
+    // You do not need to give the model attribute in here because a rederiction will be performed
+    // The redirection will give the model attribute
+    // model.addAttribute("grades", gradeService.getAllGrades());
     return "redirect:/grades";
   }
 }

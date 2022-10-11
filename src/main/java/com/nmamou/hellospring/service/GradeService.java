@@ -20,7 +20,7 @@ public class GradeService {
     gradeRepository.addGrade(newGrade);
   }
 
-  public void updateGrade(Grade newGradeValue, Integer index){
+  public void updateGrade(Grade newGradeValue, int index){
     gradeRepository.updateGrade(newGradeValue, index);
   }
 
@@ -29,7 +29,7 @@ public class GradeService {
   }
 
   public Grade getGradeById(String id){
-    Integer index = getGradeIndex(id);
+    int index = getGradeIndex(id);
     return index == -1000 ? new Grade() : getGrade(index);
   }
 
@@ -37,7 +37,7 @@ public class GradeService {
     gradeRepository.removeGrade(index);
   }
 
-  public Integer getGradeIndex(String id){
+  public int getGradeIndex(String id){
     for(int i=0; i < gradeRepository.getAllGrades().size(); i++){
       if( gradeRepository.getGrade(i).getId().equals(id))
         return i;

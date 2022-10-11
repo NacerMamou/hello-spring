@@ -3,9 +3,11 @@ package com.nmamou.hellospring.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
 
 import com.nmamou.hellospring.Grade;
 
+@Repository
 public class GradeRepository {
   private List <Grade> studentGrades = new ArrayList<>(); 
 
@@ -17,7 +19,7 @@ public class GradeRepository {
     studentGrades.add(newGrade);
   }
 
-  public void updateGrade(Grade newGradeValue, Integer index){
+  public void updateGrade(Grade newGradeValue, int index){
     studentGrades.set(index, newGradeValue);
   }
 
